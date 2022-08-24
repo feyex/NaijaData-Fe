@@ -1,0 +1,41 @@
+<div id="signup">
+  <div class="container pt-3 pb-2">
+    <div class="row">
+      <div class="col-lg-10 col-xs-12 m-auto">
+          <div class="dashboard" style="background: #fff;">
+            <!-- <p class="p-16">View Sentiment</p> -->
+            <div class="col-8">
+              <p class="s-10 btxtt">
+                  Sentiment: <small class="s-23 text-primary"> {{this.tweetResponse?.polarity}} </small>
+              </p>
+              <!-- <a href="/bible-tweet" class="s-13 gtxtt text-danger" >View Yoruba Corpus</a> <br> -->
+              <a href="/tweet" class="s-13 gtxtt text-danger" >View Tweet Corpus</a> <br>
+            </div>
+            <div class="col-12 my-4">
+              <div class="table-responsive-md" style="border: 1px solid #e6e9ec;">
+                  <table class="table table-striped">
+                      <thead>
+                          <th>S|N</th>
+                          <th>MESSAGE</th>
+                          <th>SENTIMENT</th>
+                          <th>DATE</th>
+
+                          <th></th>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let sentiment of sentimentResponse ; let i=index;">
+                              <td class="p-14">{{i + 1}}</td>
+                              <td class="p-14">{{this.tweetResponse?.message}}</td>
+                              <td class="p-14">{{sentiment?.polarity}}</td>
+                              <td class="p-14">{{sentiment?.createdAt | date:'shortDate'}}</td>
+                            </tr>   
+                      </tbody>
+                  </table>
+    
+              </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,18 +13,34 @@ export class UserAuthService {
 
   constructor(private httpClient: HttpClient) { }
   // set backend server url instance
-  // apiServer = 'http://localhost:4000';
-  apiServer ="https://tweet-be.herokuapp.com";
+  apiServer = 'http://localhost:4000';
+  // apiServer ="https://tweet-be.herokuapp.com";
 
   // assume the API uses Jwtoken to authenticate user access
   authSubject = new BehaviorSubject(false);
 
   // signup user
-  submitTweet(message, source, area) {
+  signin(email, firstname, lastname, phoneNumber, password, role) {
+    const obj = {
+      firstname,
+      lastname,
+      password,
+      email,
+      phoneNumber,
+      role
+    };
+    return this.httpClient.post(`${this.apiServer}/v1/users`, obj);
+
+  }
+
+  // submit user
+  submitTweet(message, source, area, url, userId) {
     const obj = {
       message,
       source,
-      area
+      area,
+      url,
+      userId
     };
     return this.httpClient.post(`${this.apiServer}/tweet/tweets`, obj);
 
@@ -37,7 +53,7 @@ export class UserAuthService {
       email,
       password
     };
-    return this.httpClient.post<any>(`${this.apiServer}/api/login`, msg)
+    return this.httpClient.post<any>(`${this.apiServer}/v1/login`, msg)
       .pipe(
         map(result => {
 
@@ -69,6 +85,9 @@ deleteTweets(id) {
     return this.httpClient.get(`${this.apiServer}/tweet/tweets`).toPromise();
   }
 
+  getUserTweets(id) {
+    return this.httpClient.get(`${this.apiServer}/tweet/user/${id}`).toPromise();
+  }
   getYorubaBible() {
     return this.httpClient.get(`${this.apiServer}/api/yoruba`).toPromise();
   }
@@ -78,7 +97,7 @@ deleteTweets(id) {
     this.id = localStorage.userid;
     return this
             .httpClient
-            .get(this.apiServer + `/tweet/tweets` + this.id).toPromise();
+            .get(this.apiServer + `/tweet/tweets/` + this.id).toPromise();
     }
 
 
@@ -97,25 +116,35 @@ deleteTweets(id) {
             .put(this.apiServer + `/api/users/` + this.id , obj);
     }
 
-     // to fetch each Users data by user_Id
-   gettransactionId(id: string) {
-    this.id = localStorage.userid;
-    console.log(this.id);
-    return this
-            .httpClient
-            .get<any[]>(this.apiServer + `/transaction/transact/` + this.id).pipe(map(data => data));
+    saveSentiment(tweetId: string, score: number) {
+      const obj = {
+        tweetId,
+        score
+      };
+      return this.httpClient.post(`${this.apiServer}/tweet/sentiment`, obj);
+  
+    }
+  
+    // calculate tweet
+    calcSentiment(tweetId: string) {
+      const obj = {
+        tweetId
+      };
+      return this.httpClient.post(`${this.apiServer}/tweet/calcSentiment`, obj);
+  
+    }
+  
+    // fetch all sentiment tweets
+    getSentiment() {
+      return this.httpClient.get(`${this.apiServer}/tweet/sentiment`).toPromise();
     }
 
-
-     // to fetch each Users data by Id
-   gettransaction(id: string) {
-    this.id = localStorage.userid;
-    return this
-            .httpClient
-            .get(this.apiServer + `/transaction/transactions/` + this.id);
+    getSentimentById(id) {
+      // this.id = localStorage.userid;
+      return this
+        .httpClient
+        .get(this.apiServer + `/tweet/sentiment/` + id).toPromise();
     }
-
-
 
     // confirm password exist in db
     checkpwdexist(password: string) {

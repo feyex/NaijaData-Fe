@@ -16,14 +16,19 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './account/tweet/tweet.component';
+import { TweetComponent } from './tweets/tweet/tweet.component';
 import {AuthGuard} from './auth/auth.guard';
 import {UserAuthService} from './auth/user-auth.service';
-import { BillService } from './transactions/bill.service';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { ListTweetComponent } from './account/list-tweet/list-tweet.component';
+import { ListTweetComponent } from './tweets/list-tweet/list-tweet.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { BibleTweetComponent } from './account/bible-tweet/bible-tweet.component';
+import { BibleTweetComponent } from './tweets/bible-tweet/bible-tweet.component';
+import { LoginComponent } from './account/login/login.component';
+import { AdminComponent } from './tweets/admin/admin.component';
+import { SignupComponent } from './account/signup/signup.component';
+import { AnnotatorComponent } from './tweets/annotator/annotator.component';
+import { CalcSentimentComponent } from './sentiment/calc-sentiment/calc-sentiment.component';
+import { ViewSentimentComponent } from './sentiment/view-sentiment/view-sentiment.component';
 
 
 export function tokenGetter() {
@@ -38,6 +43,12 @@ export function tokenGetter() {
     PagenotfoundComponent,
     ListTweetComponent,
     BibleTweetComponent,
+    LoginComponent,
+    AdminComponent,
+    TweetComponent,
+    AnnotatorComponent,
+    CalcSentimentComponent,
+    ViewSentimentComponent
 
   ],
   imports: [
@@ -66,7 +77,7 @@ export function tokenGetter() {
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA
   ],
-  providers: [AuthGuard, UserAuthService, BillService,
+  providers: [AuthGuard, UserAuthService,
     {provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: false}}],
   bootstrap: [AppComponent]
 })

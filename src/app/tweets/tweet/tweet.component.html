@@ -43,6 +43,15 @@
                 name="area" class="form-control" placeholder="Area">
               </div>
             </div>
+            <div>
+              <div class="input-group mt-3">
+                <div class="input-group-prepend pl-3 pr-1">
+                  <i class="ion-person" style="font-size: 20px; color: #ddd;"></i>
+                </div>
+                <input type="text" #source="ngModel" [(ngModel)]="signup.url"
+                name="url" class="form-control" placeholder="Url">
+              </div>
+            </div>
             <div class="p-12 my-2" style="color: #333;">
               By clicking the submit button below you agreed to submit this tweet message which will be used for resaerch purpose
             </div>

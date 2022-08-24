@@ -1,0 +1,17 @@
+.btn-Orange {
+    font-family: Avenir;
+    /* max-width: 200px; */
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 1px;
+    border: solid 0.5px #f16722;
+    background-color: #f16722 !important;
+    transition: .3s ease-in-out;
+
+}
+
+.space{
+    font-family: Avenir;
+    font-size: 12px;
+}

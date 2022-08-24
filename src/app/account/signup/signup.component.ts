@@ -8,14 +8,17 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './tweet.component.html',
-  styleUrls: ['./tweet.component.css']
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
   signup = {
-    message : "",
-    source : "", 
-    area : ""
+    email : "", 
+    firstname : "",
+    lastname : "", 
+    phoneNumber: "",
+    password: ""
+
   }
 
   referralNum = Math.floor(Math.random() * 100000);
@@ -31,22 +34,25 @@ export class SignupComponent implements OnInit {
   }
 
   create() {
-
-    const message = this.signup.message;
-    const source = this.signup.source;
-    const area = this.signup.area;
+    const email = this.signup.email;
+    const firstname = this.signup.firstname;
+    const lastname = this.signup.lastname;
+    const phoneNumber = this.signup.phoneNumber;
+    const password= this.signup.password;
+    const role = 'user';
     
  
-    this.authService.submitTweet(message,source,area).subscribe((res:any) => {
+    this.authService.signin( email,firstname,lastname,phoneNumber,password,role).subscribe((res:any) => {
     
       if(res.status == true){
-        this.toast.success("Tweet Message Submitted Successfully.", "Success", {
+        this.toast.success("User Registered Successfully.", "Signup", {
           timeOut: 4000,
           positionClass: 'toast-top-center'
         });
+        this.router.navigate(['/login']);
       }
       else{
-        this.toast.error("Failed To Submit Tweet Message", "Submission Error", {
+        this.toast.error("Registration Failed.", "Signup Error", {
           timeOut: 4000,
           positionClass: 'toast-top-center'
         });

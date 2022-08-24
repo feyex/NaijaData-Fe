@@ -18,6 +18,7 @@ export class ListTweetComponent implements OnInit {
   user: any = {};
   order: Object;
   collection: any = 0;
+  userId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class ListTweetComponent implements OnInit {
      }
 
   ngOnInit() {
+    this.userId = localStorage.getItem('userid')
    
     //display all tweet
     this.showTweets();
@@ -34,7 +36,7 @@ export class ListTweetComponent implements OnInit {
   }
 
 showTweets(){
-this.auth.getTweets()
+this.auth.getUserTweets(this.userId)
 .then(user => {
   this.order = user;
   this.user = Array.of (this.order);

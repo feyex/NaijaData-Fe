@@ -1,0 +1,72 @@
+<div id="signup">
+  <div class="container pt-3 pb-2">
+    <div class="row">
+      <div class="col-lg-10 col-xs-12 m-auto">
+          <div class="dashboard" style="background: #fff;">
+            <p class="p-16">View Tweets</p>
+            <div class="col-8">
+              <p class="s-13 btxtt">
+                  Total Number of Records: <small class="s-23">{{this.user?.length}} </small>
+              </p>
+              <a href="#" class="s-13 gtxtt">Save Tweet</a> <br>
+              <a href="/bible-tweet" class="s-13 gtxtt text-danger" >View Yoruba Corpus</a> <br>
+              <a class="s-13 gtxtt text-primary" (click)="showTweets()" >View Tweet Corpus</a>
+            </div>
+            <div class="col-12 my-4">
+              <div class="table-responsive-md" style="border: 1px solid #e6e9ec;">
+                  <table class="table table-striped">
+                      <thead>
+                          <th>S|N</th>
+                          <th>MESSAGE</th>
+                          <th>SOURCE</th>
+                          <th>AREA</th>
+                          <th>DATE</th>
+                          <th>Assign Polarity</th>
+
+                          <th></th>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let tweet of user  | paginate: config ; let i=index;">
+                              <td class="p-14">{{i + 1}}</td>
+                              <td class="p-14">{{tweet?.message}}</td>
+                              <td class="p-14">{{tweet?.source}}</td>
+                              <td class="p-14">{{tweet?.area}}</td>
+                              <td class="p-14">{{tweet?.createdAt | date:'shortDate'}}</td>
+                              <td>
+                                <div class="dropdown show">
+                                  <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown">
+                                    <i class="ion-android-more-vertical" style="color: #a0a0a0; font-size: 18px;"></i>
+                                  </a>
+                
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="calcSentiment/{{tweet?._id}}">Save Sentiment</a>
+                                    <a class="dropdown-item" (click)= "deleteTweet(tweet._id)">Delete</a>
+                                    <a class="dropdown-item" href="viewSentiment/{{tweet?._id}}">View Sentiment</a>
+                                    
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>   
+                      </tbody>
+                  </table>
+                  <!-- pagination controls -->
+                  <pagination-controls 
+                  [maxSize]="maxSize"
+                  [directionLinks]="directionLinks"
+                  [autoHide]="autoHide"
+                  [responsive]="responsive"
+                  [previousLabel]="labels.previousLabel"
+                  [nextLabel]="labels.nextLabel"
+                  [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                  [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                  [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                  (pageChange)="onPageChange($event)"></pagination-controls>
+    
+    
+              </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

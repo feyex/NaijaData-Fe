@@ -1,0 +1,46 @@
+<div id="signup">
+  <div class="container pt-3 pb-2">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <a class="navbar-brand" [routerLink]="['']" routerLinkActive="router-link-active">
+          <div class="logo">
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-6 col-xs-12 m-auto">
+          <div class="dashboard" style="background: #fff;">
+            <p class="p-12">Save Sentiment</p>
+            <a href="/tweet" class="s-13 gtxtt">View All</a>
+    
+            <div class="mb-2">
+              <p>Message</p>
+              <div class="text-primary input-group">
+               <p>{{this.tweetResponse?.message}}</p>
+              </div>
+            </div>
+            <div class="mt-3">
+              <p>Source</p>
+              <div class="text-primary input-group">
+               <p>{{this.tweetResponse?.source}}</p>
+              </div>
+            </div>
+            <div>
+              <div>Select Polarity</div>
+              <div class="mt-3 col-md-4">
+                <select [(ngModel)]="selectedOption" >
+                  <option value="" selected disabled>Select Polarity</option>
+                  <option *ngFor="let polarities of polarity">
+                    {{polarities.sentiment}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="p-12 my-2" style="color: #333;">
+              By clicking the submit button below you agreed to submit this polarity score.
+            </div>
+            <button (click)="saveSentiment()" type="submit" class="btn btn-Orange w-100 mt-4 rounded">SUBMIT</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
