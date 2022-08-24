@@ -13,8 +13,8 @@ export class UserAuthService {
 
   constructor(private httpClient: HttpClient) { }
   // set backend server url instance
-  apiServer = 'http://localhost:4000';
-  // apiServer ="https://tweet-be.herokuapp.com";
+  // apiServer = 'http://localhost:4000';
+  apiServer ="https://naijadataset-be.herokuapp.com";
 
   // assume the API uses Jwtoken to authenticate user access
   authSubject = new BehaviorSubject(false);
