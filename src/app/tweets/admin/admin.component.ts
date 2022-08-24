@@ -25,10 +25,8 @@ export class AdminComponent implements OnInit {
      }
 
   ngOnInit() {
-   
-    //display all tweet
+     //display all tweet
     this.showTweets();
-
   }
 
 showTweets(){
@@ -73,7 +71,6 @@ this.auth.getTweets()
   };
 
   onPageChange(event){
-    console.log(event);
     this.config.currentPage = event;
   }
 
