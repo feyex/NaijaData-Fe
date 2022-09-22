@@ -17,6 +17,8 @@ export class TweetComponent implements OnInit {
     source : "", 
     area : "",
     url:"",
+    language: "",
+    polarity: ""
   }
 
   referralNum = Math.floor(Math.random() * 100000);
@@ -31,6 +33,28 @@ export class TweetComponent implements OnInit {
     
   }
 
+  languages = [
+    {name: 'English, Yoruba, Hausa, Igbo, Pidgin', value:'English, Yoruba, Hausa, Igbo, Pidgin'},
+    {name: 'English, Yoruba', value:'English, Yoruba'},
+    {name: 'English, Hausa', value:'English, Hausa'},
+    {name: 'English, Igbo', value:'English, Igbo'},
+    {name: 'English, Pidgin', value:'English, Pidgin'},
+    {name: 'Yoruba,Pidgin', value:'Yoruba,Pidgin'},
+    {name: 'Yoruba,Hausa', value:'Yoruba,Hausa'},
+    {name: 'Yoruba,Igbo', value:'Yoruba,Igbo'},
+    {name: 'Pidgin,Igbo', value:'Pidgin,Igbo'},
+    {name: 'Pidgin,Hausa', value:'Yoruba,Hausa'},
+    {name: 'English, Yoruba,Pidgin', value:'English, Yoruba,Pidgin'},
+  ]
+
+
+  polarities = [
+    {name: 'Negative', value: 'negative'},
+    {name: 'Positive', value: 'positive'},
+    {name: 'Neutral', value: 'neutral'},
+
+  ]
+
   create() {
 
     const message = this.signup.message;
@@ -38,8 +62,10 @@ export class TweetComponent implements OnInit {
     const area = this.signup.area;
     const url = this.signup.url;
     const userId =  localStorage.getItem('userid')
+    const language = this.signup.language;
+    const userPolarity = this.signup.polarity;
  
-    this.authService.submitTweet(message,source,area, url, userId).subscribe((res:any) => {
+    this.authService.submitTweet(message,source,area, url, userId, language, userPolarity).subscribe((res:any) => {
     
       if(res.status == true){
         this.toast.success("Tweet Message Submitted Successfully.", "Success", {

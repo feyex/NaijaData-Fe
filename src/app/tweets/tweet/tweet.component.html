@@ -31,7 +31,7 @@
                   <i class="ion-person" style="font-size: 20px; color: #ddd;"></i>
                 </div>
                 <input type="text" #source="ngModel" [(ngModel)]="signup.source"
-                name="source" class="form-control" placeholder="Source">
+                name="source" class="form-control" placeholder="Source of Information">
               </div>
             </div>
             <div>
@@ -40,7 +40,7 @@
                   <i class="ion-person" style="font-size: 20px; color: #ddd;"></i>
                 </div>
                 <input type="text" #source="ngModel" [(ngModel)]="signup.area"
-                name="area" class="form-control" placeholder="Area">
+                name="area" class="form-control" placeholder="Area of information eg entertainment">
               </div>
             </div>
             <div>
@@ -49,7 +49,25 @@
                   <i class="ion-person" style="font-size: 20px; color: #ddd;"></i>
                 </div>
                 <input type="text" #source="ngModel" [(ngModel)]="signup.url"
-                name="url" class="form-control" placeholder="Url">
+                name="url" class="form-control" placeholder="Url of tweet">
+              </div>
+              <div class="input-group mt-3">
+                <div class="input-group-prepend pl-3 pr-1">
+                  <i class="ion-person" style="font-size: 20px; color: #ddd;"></i>
+                </div>
+              <select #disco="ngModel" [(ngModel)]="signup.language" name="language" class="form-control" required>
+                <option value>Select Tweet Language</option>
+                <option *ngFor="let language of languages" [value]="language.value">{{language.name}}</option>
+              </select>
+              </div>
+              <div class="input-group mt-3">
+                <div class="input-group-prepend pl-3 pr-1">
+                  <i class="ion-person" style="font-size: 20px; color: #ddd;"></i>
+                </div>
+              <select #polarity="ngModel" [(ngModel)]="signup.polarity" name="polarity" class="form-control">
+                <option value>Select Polarity</option>
+                <option *ngFor="let polarity of polarities" [value]="polarity.value">{{polarity.name}}</option>
+              </select>
               </div>
             </div>
             <div class="p-12 my-2" style="color: #333;">

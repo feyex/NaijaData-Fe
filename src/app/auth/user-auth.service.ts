@@ -34,13 +34,15 @@ export class UserAuthService {
   }
 
   // submit user
-  submitTweet(message, source, area, url, userId) {
+  submitTweet(message, source, area, url, userId, language, userPolarity) {
     const obj = {
       message,
       source,
       area,
       url,
-      userId
+      userId,
+      language,
+      userPolarity
     };
     return this.httpClient.post(`${this.apiServer}/tweet/tweets`, obj);
 
@@ -167,5 +169,13 @@ deleteTweets(id) {
                 .httpClient
                 .put(this.apiServer + `/api/password/` + this.id, pwd);
     }
+
+    fetchUser(){
+      this.id = localStorage.userid;
+    return this
+            .httpClient
+            .get(this.apiServer + `/v1/users/` + this.id).toPromise();
+    }
+    
 
 }

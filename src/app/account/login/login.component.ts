@@ -32,7 +32,6 @@ login = {
   }
 
   public submit() {
-    console.log(this.login.email,this.login.password);
     this.auth.login(this.login.email, this.login.password)
       .pipe(first())
       .subscribe(
